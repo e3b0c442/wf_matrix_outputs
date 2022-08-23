@@ -1,0 +1,25 @@
+name: matrix test
+
+jobs:
+  testmatrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        count: [1, 3, 5]
+    outputs:
+      x: ${{ steps.xer.outputs.x }}
+    steps:
+      - id: xer
+        run: |
+          export X=
+          for i in {1..${{ matrix.count }}}; do
+            X=$(echo "${X}X")
+          done
+          echo "::set-output name=x::$X"
+
+  checkout:
+    runs-on: ubuntu-latest
+    needs: testmatrix
+    steps:
+      - run: |
+          echo ${{ needs.testmatrix.outputs.x }}

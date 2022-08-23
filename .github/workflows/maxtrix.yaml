@@ -25,4 +25,4 @@ jobs:
     needs: testmatrix
     steps:
       - run: |
-          echo ${{ needs.testmatrix.outputs.x }}
+          echo ${{ needs.testmatrix.outputs }}

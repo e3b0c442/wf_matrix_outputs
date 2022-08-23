@@ -1,5 +1,8 @@
 name: matrix test
 
+on:
+  workflow_dispatch:
+
 jobs:
   testmatrix:
     runs-on: ubuntu-latest
